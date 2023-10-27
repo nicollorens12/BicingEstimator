@@ -24,7 +24,9 @@ final_df["day_week"] = final_df["last_reported"].apply(lambda x: datetime.utcfro
 final_df["hour"] = final_df["last_reported"].apply(lambda x: datetime.utcfromtimestamp(x).hour)
 final_df["minute"] = final_df["last_reported"].apply(lambda x: datetime.utcfromtimestamp(x).minute)
 
-final_df.drop(columns=['V1', 'last_reported'], inplace=True)
+# Encara no esborrem last_reported perquè ho utilitzem per ordenar cronològicament 
+# final_df.drop(columns=['V1', 'last_reported'], inplace=True)
+final_df.drop(columns=['V1'], inplace=True)
 
 # Guardar el DataFrame combinado en un solo archivo CSV llamado "DataFrame.csv"
 final_df.to_csv(os.path.join(current_directory, "DataFrame.csv"), index=False)
