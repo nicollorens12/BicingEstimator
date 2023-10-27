@@ -79,7 +79,7 @@ for index, row in df_bikes.iterrows():
 columns = ['total_salidas', 'salidas_mecanicas', 'salidas_electricas', 
            'entradas_mecanicas', 'entradas_electricas', 'total_entradas', 
            'demanda_mecanicas', 'demanda_electricas', 'total_demanda', 
-           'hora', 'day_week', 'day_month', 'month', 'satisfy_demand']
+           'hour', 'day_week', 'day_month', 'month', 'satisfy_demand']
 df_hourly = pd.DataFrame(hourly_data, columns=columns)
 
 # Escribir el DataFrame resultante en un nuevo archivo llamado DataFramePerHour.csv

@@ -1,4 +1,4 @@
-total_salidas,salidas_mecanicas,salidas_electricas,entradas_mecanicas,entradas_electricas,total_entradas,demanda_mecanicas,demanda_electricas,total_demanda,hora,day_week,day_month,month,satisfy_demand,working_day
+total_salidas,salidas_mecanicas,salidas_electricas,entradas_mecanicas,entradas_electricas,total_entradas,demanda_mecanicas,demanda_electricas,total_demanda,hour,day_week,day_month,month,satisfy_demand,working_day
 0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,21,4,30,9,True,1
 0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,22,4,30,9,False,1
 0.0,0.0,0.0,14.0,3.0,17.0,-14.0,-3.0,-17.0,23,5,1,10,True,1

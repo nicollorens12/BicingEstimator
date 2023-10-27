@@ -1,32 +1,13 @@
-import os
 import pandas as pd
-from datetime import datetime
 
+# Cargar ambos archivos CSV
+df_hourly = pd.read_csv('DataFramePerHour.csv')
+df_meteo = pd.read_csv('Meteo_DataSet.csv')
 
-# Directorio actual donde se encuentra el script
-current_directory = os.path.dirname(os.path.abspath(__file__))
+# Realizar el 'merge' de los dos dataframes usando las columnas 'month', 'day_month' y 'hour'
+merged_df = pd.merge(df_hourly, df_meteo[['month', 'day_month', 'hour', 'temperature', 'rain', 'windspeed']], 
+                     on=['month', 'day_month', 'hour'], 
+                     how='left')
 
-# Listar todos los archivos CSV que comienzan con "filtered_stations" en el directorio actual
-csv_files = [file for file in os.listdir(current_directory) if file.startswith("filtered_stations") and file.endswith(".csv")]
-
-# Inicializar un DataFrame vacío para contener todos los datos
-final_df = pd.DataFrame()
-
-# Iterar a través de cada archivo CSV y combinarlos en un solo DataFrame
-for csv_file in csv_files:
-    df = pd.read_csv(os.path.join(current_directory, csv_file))
-    final_df = pd.concat([final_df, df], ignore_index=True)
-
-# Agregar columnas para el mes, el día del mes, la hora y los minutos
-final_df["month"] = final_df["last_reported"].apply(lambda x: datetime.utcfromtimestamp(x).month)
-final_df["day_month"] = final_df["last_reported"].apply(lambda x: datetime.utcfromtimestamp(x).day)
-final_df["day_week"] = final_df["last_reported"].apply(lambda x: datetime.utcfromtimestamp(x).weekday())
-final_df["hour"] = final_df["last_reported"].apply(lambda x: datetime.utcfromtimestamp(x).hour)
-final_df["minute"] = final_df["last_reported"].apply(lambda x: datetime.utcfromtimestamp(x).minute)
-
-final_df.drop(columns=['V1', 'last_reported'], inplace=True)
-
-# Guardar el DataFrame combinado en un solo archivo CSV llamado "DataFrame.csv"
-final_df.to_csv(os.path.join(current_directory, "DataFrame.csv"), index=False)
-
-print("Archivos CSV combinados en 'DataFrame.csv' con columnas de tiempo y columna 'festivo' agregada con éxito en el directorio actual.")
+# Guardar el DataFrame combinado de nuevo en 'DataFramePerHour.csv'
+merged_df.to_csv('DataFramePerHourAndMeteo.csv', index=False)
