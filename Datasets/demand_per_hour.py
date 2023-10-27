@@ -19,6 +19,9 @@ entradas_electricas = 0
 no_bikes_counter = 0  # Contador para determinar si se ha satisfecho la demanda
 satisfy_demand = True
 
+# Constante para determinar cada cuántos instantes de tiempo consecutivos consideramos que no se ha satisfecho la demanda
+N = 5
+
 # Iterar sobre las filas del dataframe
 for index, row in df_bikes.iterrows():
     current_mechanical = row['num_bikes_available_types.mechanical']
@@ -42,6 +45,10 @@ for index, row in df_bikes.iterrows():
     else:
         no_bikes_counter = 0
 
+    # Si durante N instantes consecutivos, no había bicicletas, consideramos que no se ha satisfecho la demanda
+    if no_bikes_counter == N:
+        satisfy_demand = False
+
     # Si cambia la hora, guardar los datos acumulados y resetear las variables
     if row['hour'] != previous_hour:
         total_salidas = salidas_mecanicas + salidas_electricas
@@ -50,23 +57,19 @@ for index, row in df_bikes.iterrows():
         demanda_electricas = salidas_electricas - entradas_electricas
         total_demanda = total_salidas - total_entradas
         
-        # Verificar si se ha satisfecho la demanda
-        if no_bikes_counter >= 3:
-            satisfy_demand = False
-        else:
-            satisfy_demand = True
-        
         hourly_data.append([total_salidas, salidas_mecanicas, salidas_electricas, 
                             entradas_mecanicas, entradas_electricas, total_entradas, 
                             demanda_mecanicas, demanda_electricas, total_demanda, 
                             previous_hour, row['day_week'], row['day_month'], 
                             row['month'], satisfy_demand])
         
+        # Reinicio de variables para la nueva hora
         salidas_mecanicas = 0
         salidas_electricas = 0
         entradas_mecanicas = 0
         entradas_electricas = 0
         no_bikes_counter = 0
+        satisfy_demand = True
         previous_hour = row['hour']
     
     previous_mechanical = current_mechanical
