@@ -49,8 +49,8 @@ for index, row in df_bikes.iterrows():
     # Acumular salidas y entradas
     diff_mechanical = current_mechanical - previous_mechanical
     diff_ebike = current_ebike - previous_ebike
-    diferencia_acumulada_mechanical = diff_mechanical
-    diferencia_acumulada_ebike = diff_ebike
+    diferencia_acumulada_mechanical += diff_mechanical
+    diferencia_acumulada_ebike += diff_ebike
     balance_mechanical += diff_mechanical
     balance_ebike += diff_ebike
 
