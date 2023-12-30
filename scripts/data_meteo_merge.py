@@ -8,6 +8,6 @@ meteo_data = pd.read_csv('scripts/barcelona_meteo_info.csv')
 merged_data = pd.merge(bicing_data, meteo_data, on=['year', 'month', 'day', 'hour'], how='left')
 
 # Guardar el nuevo conjunto de datos fusionado en un archivo CSV
-merged_data.to_csv('Bicing_Hours_Meteo.csv', index=False)
+merged_data.to_csv('../Bicing_Hours_Meteo.csv', index=False)
 
 print("Proceso completado. El nuevo archivo CSV Bicing_Hours_Meteo.csv ha sido creado.")
