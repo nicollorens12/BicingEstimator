@@ -4,8 +4,24 @@ import pandas as pd
 bicing_data = pd.read_csv('dataset_generation/temporary_datasets/dataset_without_demand_satisfied.csv')
 demand_data = pd.read_csv('dataset_generation/temporary_datasets/demand_satisfaction.csv')
 
-print(bicing_data[['year', 'month', 'day', 'hour']].drop_duplicates().count())
-print(demand_data[['year', 'month', 'day', 'hour']].drop_duplicates().count())
+bicing_data.drop_duplicates()
+
+# Encontrar duplicados basados en las columnas de fecha y hora
+duplicates = demand_data[demand_data.duplicated(subset=['year', 'month', 'day', 'hour'], keep=False)]
+
+# Mostrar los duplicados si existen
+if not duplicates.empty:
+    print("Se encontraron los siguientes registros duplicados:")
+    print(duplicates)
+else:
+    print("No se encontraron registros duplicados.")
+
+# Eliminar duplicados, manteniendo la primera ocurrencia
+demand_data = demand_data.drop_duplicates(subset=['year', 'month', 'day', 'hour'], keep='first')
+
+# Ver que coincidan
+print(bicing_data[['year', 'month', 'day', 'hour']].count())
+print(demand_data[['year', 'month', 'day', 'hour']].count())
 
 # Fusionar los conjuntos de datos utilizando las columnas de fecha y hora como clave
 merged_data = pd.merge(bicing_data, demand_data, on=['year', 'month', 'day', 'hour'], how='outer', indicator=True)
