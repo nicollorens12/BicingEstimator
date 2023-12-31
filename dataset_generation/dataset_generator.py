@@ -4,17 +4,18 @@ import subprocess
 # AVISO: Descomentar SÓLO cuando sea necesario, este es el script que filtra los datos de TODAS las estaciones, y puede llevar unos minutos.
 # subprocess.run(['python3', 'scripts/first_filtering.py'])
 
-# Clasifica los viajes por llegadas o salidas:
-subprocess.run(['python3', 'scripts/second_filtering.py'])
+subprocess.run(['python3', 'dataset_generation/scripts/1-Trips_422_filtering.py'])
 
-# Crea un dataset que indica el número de llegadas y salidas en cada hora:
-subprocess.run(['python3', 'scripts/grouping.py'])
+subprocess.run(['python3', 'dataset_generation/scripts/2-Exits_and_Arrivals_422_classifier.py'])
 
-# Crea un dataset por horas con la información meteorológica en las coordenadas de la estación:
-subprocess.run(['python3', 'scripts/meteo_API_request.py'])
+subprocess.run(['python3', 'dataset_generation/scripts/3-Dataset_422_weather.py'])
 
-# Modifica el formato de fecha del dataset con la información meteorológica:
-subprocess.run(['python3', 'scripts/converter_time.py'])
+subprocess.run(['python3', 'dataset_generation/scripts/4-Dataset_422_weather_cleaning.py'])
 
-# Fusiona el dataset por horas con la información de llegadas y salidas con el dataset por horas con la información meteorológica:
-subprocess.run(['python3', 'scripts/data_meteo_merge.py'])
+subprocess.run(['python3', 'dataset_generation/scripts/5-Dataset_422_weather_features.py'])
+
+subprocess.run(['python3', 'dataset_generation/scripts/6-Dataset_422_weather_features_cleaning.py'])
+
+subprocess.run(['python3', 'dataset_generation/scripts/7-Dataset_422_weather_features_scaling.py'])
+
+subprocess.run(['python3', 'dataset_generation/scripts/8-Dataset_422_weather_features_scaling_cleaning.py'])

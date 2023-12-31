@@ -1,6 +1,8 @@
 Bicing_Trips_2021.csv
 Bicing_Trips_2022.csv
 Bicing_Trips_2023.csv
+dataset_generation/temporary_datasets/original_datasets/
+.cache.sqlite
 2021_01_Gener_BicingNou_ESTACIONS.csv
 2021_02_Febrer_BicingNou_ESTACIONS.csv
 2021_03_Març_BicingNou_ESTACIONS.csv
