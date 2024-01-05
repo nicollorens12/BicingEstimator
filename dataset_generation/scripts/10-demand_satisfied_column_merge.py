@@ -33,7 +33,7 @@ no_match = merged_data[merged_data['_merge'] != 'both']
 final_data = merged_data[merged_data['_merge'] == 'both'].drop(columns=['_merge'])
 
 # Reordenar las columnas del dataset final
-final_data = final_data[['hour', 'day', 'month', 'year', 'week_day', 'working_day', 'class_day', 'exits', 'temperature_2m', 'apparent_temperature', 'precipitation', 'rain', 'wind_speed_10m', 'demand_satisfied']]
+final_data = final_data[['hour', 'day', 'month', 'year', 'week_day', 'working_day', 'class_day', 'exits', 'temperature_2m', 'apparent_temperature', 'relative_humidity_2m', 'precipitation', 'rain', 'wind_speed_10m', 'demand_satisfied']]
 
 # Guardar el nuevo conjunto de datos fusionado en un archivo CSV
 final_data.to_csv('dataset_generation//dataset.csv', index=False)
