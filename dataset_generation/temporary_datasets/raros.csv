@@ -1,1 +1,1 @@
-year,month,day,week_day,hour,exits,arrivals,temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,rain,wind_speed_10m,demand_satisfied,_merge
+year,month,day,week_day,hour,exits,arrivals,temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,rain,wind_speed_10m,working_day,class_day,demand_satisfied,_merge

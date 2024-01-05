@@ -1,0 +1,31 @@
+2021:
+    del 7 de enero al 22 de enero (exámenes)
+    del 15 de febrero al 26 de marzo (clases)
+    del 6 de abril al 14 de abril (clases)
+    del 15 de abril al 21 de abril (exámenes)
+    del 22 de abril al 31 de mayo (clases)
+    del 1 de junio al 22 de junio (exámenes)
+    del 13 de septiembre al 22 de diciembre (clases)
+
+2022:
+    del 10 de enero al 21 de enero (exámenes)
+    del 14 de febrero al 30 de marzo (clases)
+    del 31 de marzo al 6 de abril (exámenes)
+    del 19 de abril al 30 de mayo (clases)
+    del 31 de mayo al 22 de junio (exámenes)
+    del 5 de septiembre al 27 de octubre (clases)
+    del 28 de octubre al 4 de noviembre (exámenes)
+    del 7 de noviembre al 2 de diciembre (clases)
+    del 12 de diciembre al 23 de diciembre (clases)
+
+2023:
+    del 9 de enero al 20 de enero (exámenes)
+    del 13 de febrero al 31 de marzo (clases)
+    del 11 de abril al 19 de abril (clases)
+    del 20 de abril al 26 de abril (exámenes)
+    del 2 de mayo al 2 de junio (clases)
+    del 6 de junio al 23 de junio (exámenes)
+    del 7 de septiembre al 26 de octubre (clases)
+    del 27 de octubre al 3 de noviembre (exámenes)
+    del 6 de noviembreal 5 de diciembre (clases)
+    del 11 de diciembre al 22 de diciembre (clases)
