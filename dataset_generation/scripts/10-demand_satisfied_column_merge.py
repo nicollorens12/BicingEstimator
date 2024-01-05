@@ -32,8 +32,20 @@ no_match = merged_data[merged_data['_merge'] != 'both']
 # Filtrar los registros que hacen match para el dataset final
 final_data = merged_data[merged_data['_merge'] == 'both'].drop(columns=['_merge'])
 
+# Renombrar columnas
+final_data.rename(columns={
+    'temperature_2m': 'temperature',
+    'apparent_temperature': 'a_temperature',
+    'relative_humidity_2m': 'humidity',
+    'wind_speed_10m': 'wind_speed'
+}, inplace=True)
+
 # Reordenar las columnas del dataset final
-final_data = final_data[['hour', 'day', 'month', 'year', 'week_day', 'working_day', 'class_day', 'exits', 'temperature_2m', 'apparent_temperature', 'relative_humidity_2m', 'precipitation', 'rain', 'wind_speed_10m', 'demand_satisfied']]
+final_data = final_data[['hour', 'day', 'month', 'year', 'week_day', 'working_day', 'class_day', 'exits', 'temperature', 'a_temperature', 'humidity', 'precipitation', 'rain', 'wind_speed', 'demand_satisfied']]
+
+# Redondear columnas con valores decimales a tres dígitos
+cols_to_round = ['temperature', 'a_temperature', 'humidity', 'precipitation', 'rain', 'wind_speed']
+final_data[cols_to_round] = final_data[cols_to_round].round(1)
 
 # Guardar el nuevo conjunto de datos fusionado en un archivo CSV
 final_data.to_csv('dataset_generation//dataset.csv', index=False)
