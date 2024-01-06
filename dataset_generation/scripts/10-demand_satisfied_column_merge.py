@@ -44,6 +44,9 @@ final_data.rename(columns={
 week_day_mapping = {'Monday': 0, 'Tuesday': 1, 'Wednesday': 2, 'Thursday': 3, 'Friday': 4, 'Saturday': 5, 'Sunday': 6}
 final_data['week_day'] = final_data['week_day'].map(week_day_mapping)
 
+# Convertir 'demand_satisfied' a 1 para 'True', 0 para 'False', y dejar los missing values como NaN
+final_data['demand_satisfied'] = final_data['demand_satisfied'].map({True: 1, False: 0})
+
 # Reordenar las columnas del dataset final
 final_data = final_data[['hour', 'day', 'month', 'year', 'week_day', 'working_day', 'class_day', 'exits', 'temperature', 'a_temperature', 'humidity', 'precipitation', 'rain', 'wind_speed', 'demand_satisfied']]
 
