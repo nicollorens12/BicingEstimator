@@ -47,12 +47,30 @@ final_data['week_day'] = final_data['week_day'].map(week_day_mapping)
 # Convertir 'demand_satisfied' a 1 para 'True', 0 para 'False', y dejar los missing values como NaN
 final_data['demand_satisfied'] = final_data['demand_satisfied'].map({True: 1, False: 0})
 
-# Reordenar las columnas del dataset final
-final_data = final_data[['hour', 'day', 'month', 'year', 'week_day', 'working_day', 'class_day', 'exits', 'temperature', 'a_temperature', 'humidity', 'precipitation', 'rain', 'wind_speed', 'demand_satisfied', 'initial_bikes']]
-
 # Redondear columnas con valores decimales a tres dígitos
 cols_to_round = ['temperature', 'a_temperature', 'humidity', 'precipitation', 'rain', 'wind_speed']
 final_data[cols_to_round] = final_data[cols_to_round].round(1)
+
+# ACLARAR MISSING VALUES A NaN -----------------------------------------
+# Definir los rangos de fechas para los cuales los valores deben establecerse como NaN
+# Las fechas están en el formato 'año-mes-día'
+august_start = '2023-08-22'
+august_end = '2023-08-31'
+september_start = '2023-09-01'
+september_end = '2023-09-05'
+
+# Convertir las columnas 'year', 'month', 'day' a un objeto datetime para comparación
+final_data['date'] = pd.to_datetime(final_data[['year', 'month', 'day']])
+
+# Establecer a NaN los valores de 'demand_satisfied' y 'initial_bikes' para los rangos de fechas especificados
+final_data.loc[(final_data['date'] >= august_start) & (final_data['date'] <= august_end), ['demand_satisfied', 'initial_bikes']] = pd.NA
+final_data.loc[(final_data['date'] >= september_start) & (final_data['date'] <= september_end), ['demand_satisfied', 'initial_bikes']] = pd.NA
+
+# Eliminar la columna 'date' como se solicitó
+final_data.drop('date', axis=1, inplace=True)
+
+# Reordenar las columnas del dataset final
+final_data = final_data[['hour', 'day', 'month', 'year', 'week_day', 'working_day', 'class_day', 'exits', 'temperature', 'a_temperature', 'humidity', 'precipitation', 'rain', 'wind_speed', 'demand_satisfied', 'initial_bikes']]
 
 # Guardar el nuevo conjunto de datos fusionado en un archivo CSV
 final_data.to_csv('dataset_generation//dataset.csv', index=False)
