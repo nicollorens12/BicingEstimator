@@ -48,7 +48,7 @@ final_data['week_day'] = final_data['week_day'].map(week_day_mapping)
 final_data['demand_satisfied'] = final_data['demand_satisfied'].map({True: 1, False: 0})
 
 # Reordenar las columnas del dataset final
-final_data = final_data[['hour', 'day', 'month', 'year', 'week_day', 'working_day', 'class_day', 'exits', 'temperature', 'a_temperature', 'humidity', 'precipitation', 'rain', 'wind_speed', 'demand_satisfied']]
+final_data = final_data[['hour', 'day', 'month', 'year', 'week_day', 'working_day', 'class_day', 'exits', 'temperature', 'a_temperature', 'humidity', 'precipitation', 'rain', 'wind_speed', 'demand_satisfied', 'initial_bikes']]
 
 # Redondear columnas con valores decimales a tres dígitos
 cols_to_round = ['temperature', 'a_temperature', 'humidity', 'precipitation', 'rain', 'wind_speed']

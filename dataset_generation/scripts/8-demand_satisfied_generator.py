@@ -13,10 +13,14 @@ start_date = datetime(2021, 1, 1, 0, 0)
 end_date = datetime(2023, 11, 30, 23, 59)
 df = df[(df['datetime'] >= start_date) & (df['datetime'] <= end_date)]
 
-# Agrupar por año, mes, día y hora y determinar si la demanda fue satisfecha
-demand_satisfied = df.groupby(['year', 'month', 'day', 'hour']).apply(
-    lambda x: False if (x['num_bikes_available_types.ebike'] == 0).any() else True
-).reset_index(name='demand_satisfied')
+# Función para determinar si la demanda fue satisfecha y obtener las bicicletas iniciales
+def process_group(group):
+    demand_satisfied = False if (group['num_bikes_available_types.ebike'] == 0).any() else True
+    initial_bikes = group['num_bikes_available_types.ebike'].iloc[0]
+    return pd.Series([demand_satisfied, initial_bikes], index=['demand_satisfied', 'initial_bikes'])
+
+# Agrupar por año, mes, día y hora y aplicar la función
+grouped_data = df.groupby(['year', 'month', 'day', 'hour']).apply(process_group).reset_index()
 
 # Crear un rango completo de fechas y horas para asegurar que todas las horas estén presentes
 full_range = pd.date_range(start=start_date, end=end_date, freq='H')
@@ -27,8 +31,9 @@ full_range_df['day'] = full_range_df['datetime'].dt.day
 full_range_df['hour'] = full_range_df['datetime'].dt.hour
 
 # Unir con el rango completo para asegurarse de que todas las horas estén presentes
-final_dataset = full_range_df.merge(demand_satisfied, on=['year', 'month', 'day', 'hour'], how='left')
+final_dataset = full_range_df.merge(grouped_data, on=['year', 'month', 'day', 'hour'], how='left')
 final_dataset['demand_satisfied'].fillna('N/A', inplace=True)
+final_dataset['initial_bikes'].fillna(0, inplace=True)  # Asumimos 0 si no hay datos
 
 # Eliminar la columna 'datetime' del DataFrame final
 final_dataset.drop('datetime', axis=1, inplace=True)
