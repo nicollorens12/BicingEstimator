@@ -1,0 +1,5 @@
+Este trabajo, hecho en varios jupyter notebooks (por claridad) y necesita el archivo dataset.csv.
+
+Para ejecutar este notebook se necesita tener instalado el paquete de python "pandas","numpy","matplotlib" y "seaborn". Estos paquetes son estandares pero ademas
+se necesita instalar el paquete scikit-optimize, que se puede instalar con el comando "pip install scikit-optimize".
+
