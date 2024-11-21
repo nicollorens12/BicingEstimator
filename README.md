@@ -21,4 +21,4 @@ Los cuadernos (notebooks) pueden ejecutarse de manera independiente para realiza
 - **`GradientBoosting.ipynb`**: Contiene el código para el modelo GradientBoosting.
 - **`MLP.ipynb`**: Contiene el código para el modelo MLP.
 
-Todo el proyecto se encuentra compilado en un informe detallado llamado `informe.pdf`.
+Todo el proyecto se encuentra compilado en un informe detallado llamado [`informe.pdf`](https://github.com/nicollorens12/BicingEstimator/blob/main/informe.pdf).
